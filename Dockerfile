@@ -28,7 +28,7 @@ ENV ASPNETCORE_URLS=http://+:5000
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["WrongProjectName.csproj", "./"]  # Intentional error: galat project file name
+COPY ["WrongName.csproj", "./"]  # Intentional error: galat project file name
 RUN dotnet restore "SimpleDotNetProject.csproj"  # Yeh fail hoga kyunki file nahi milegi
 COPY . .
 WORKDIR "/src/."
