@@ -42,3 +42,20 @@ jobs:
           Branch: ${{ github.ref_name }}
           Commit: ${{ github.sha }}
           Check the build logs for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+    - name: Send email on build success
+      if: steps.docker_build.outcome == 'success'
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: Docker Build Success - ${{ github.repository }}
+        to: ${{ secrets.MAIL_RECIPIENT }}
+        from: GitHub Actions <noreply@github.com>
+        body: |
+          The Docker build succeeded for repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}
+          View the build details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
