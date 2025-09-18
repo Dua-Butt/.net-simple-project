@@ -1,24 +1,8 @@
-# services:
-#   web:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     expose:
-#       - "5000"
-#   nginx:
-#     image: nginx:latest
-#     volumes:
-#       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-#     ports:
-#       - "8084:8084"
-#     depends_on:
-#       - web
-
 services:
   web:
     build:
       context: .
-      dockerfile: NonExistentDockerfile  # Yeh galat path hai, build fail karega
+      dockerfile: Dockerfile
     expose:
       - "5000"
   nginx:
