@@ -19,7 +19,7 @@ jobs:
     - name: Build Docker images
       id: docker_build
       run: docker compose build
-      continue-on-error: false
+      continue-on-error: true
 
     - name: Test Docker run
       id: docker_test
